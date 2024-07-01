@@ -1,44 +1,28 @@
 const express = require("express");
-require("dotenv").config();
-const { MongoClient } = require("mongodb");
-const authMiddleware = require("../midlewares/authMidleware");
-
+const Category = require("../models/category");
 const router = express.Router();
-const URI = process.env.MONGO_URL;
-const client = new MongoClient(URI);
 
 router.get("/", async (req, res) => {
   try {
-    await client.connect();
-    const data = await client
-      .db("Logoipsum")
-      .collection("Categories")
-      .find()
-      .toArray();
-    await client.close();
-    return res.send(data);
+    const Categories = await Category.find();
+    res.json(Categories);
   } catch (err) {
-    return res.status(500).send({ err });
+    res.status(500).json({ message: "Error fetching categories", error: err });
   }
 });
 
 router.get("/search/:category", async (req, res) => {
   try {
     const { category } = req.params;
-    await client.connect();
-    const data = await client
-      .db("Logoipsum")
-      .collection("Categories")
-      .findOne({ name: category });
-    await client.close();
+    const foundCategory = await Category.findOne({ name: category });
 
-    if (!data) {
+    if (!foundCategory) {
       return res
         .status(404)
         .json({ message: `Category ${category} not found` });
     }
 
-    res.json(data);
+    res.json(foundCategory);
   } catch (err) {
     res
       .status(500)

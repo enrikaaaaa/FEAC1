@@ -1,10 +1,12 @@
 require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
+
+const { connectToDb } = require("./db");
 const categories = require("./router/categoriesRouter");
 const services = require("./router/servicesRouter");
 const auth = require("./router/authRouter");
-// const authMiddleware = require("./midlewares/authMidleware");
 
 const app = express();
 
@@ -17,6 +19,6 @@ app.use("/auth", auth);
 app.use("/categories", categories);
 app.use("/services", services);
 
-app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${PORT} port.`);
+connectToDb().then(() => {
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });

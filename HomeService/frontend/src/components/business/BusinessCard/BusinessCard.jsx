@@ -17,7 +17,7 @@ const BusinessCard = ({ business }) => {
         <h3 className={styles.name}>{business.company}</h3>
         <p
           className={styles.contactPerson}
-        >{`${business.name} ${business.lastname}`}</p>
+        >{`${business.name} ${business.lastName}`}</p>
         <p className={styles.address}>{business.address}</p>
         <Button>Book now</Button>
       </div>
@@ -30,7 +30,7 @@ BusinessCard.propTypes = {
     img: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     company: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
   }).isRequired,

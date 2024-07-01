@@ -29,7 +29,7 @@ const Services = () => {
             img={service.img}
             company={service.company}
             name={service.name}
-            lastname={service.lastname}
+            lastName={service.lastName}
             address={service.address}
             category={service.category}
           />

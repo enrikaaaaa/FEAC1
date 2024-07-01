@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
           _id: 1,
           company: 1,
           name: 1,
-          lastname: 1,
+          lastName: 1,
           address: 1,
           category: "$categoryData.name",
           img: 1,

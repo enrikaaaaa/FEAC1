@@ -2,6 +2,7 @@ const express = require("express");
 const Category = require("../models/category");
 const router = express.Router();
 
+
 router.get("/", async (req, res) => {
   try {
     const Categories = await Category.find();

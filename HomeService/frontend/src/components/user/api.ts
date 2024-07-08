@@ -1,12 +1,14 @@
-import { API_URL } from "@/routes/consts";
-import axios from "axios";
+import apiClient from "./apiClient";
 
-export const loginUser = (formValues) =>
-  axios
-    .post(`${API_URL}/auth/login`, formValues)
-    .then((response) => response.data);
+export interface LoginFormValues {
+  email: string;
+  password: string;
+}
 
-export const registerUser = (formValues) =>
-  axios
-    .post(`${API_URL}/auth/register`, formValues)
+export const loginUser = (formValues: LoginFormValues): Promise<any> =>
+  apiClient.post("/auth/login", formValues).then((response) => response.data);
+
+export const registerUser = (formValues: LoginFormValues) =>
+  apiClient
+    .post("/auth/register", formValues)
     .then((response) => response.data);

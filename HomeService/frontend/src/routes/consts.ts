@@ -5,6 +5,7 @@ export const ROUTES = {
   LOGIN: "/login",
   REGISTER: "/register",
   SEARCH_CATEGORY: "/search/:category",
+  BOOK_NOW: "/search/:category/book-now",
 };
 
 export const navigationBarLinks = [

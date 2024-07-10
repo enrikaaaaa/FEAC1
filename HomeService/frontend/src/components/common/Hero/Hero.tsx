@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { ROUTES } from "../../../routes/consts";
-import React from "react";
 import SearchInput from "../../../components/common/SearchInput/SearchInput";
 import styles from "./Hero.module.scss";
 
-const Hero = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const Hero: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     if (searchTerm) {
-      ROUTES.SEARCH_CATEGORY.replace(":searchTerm", searchTerm);
+      const newRoute = ROUTES.SEARCH_CATEGORY.replace(":category", searchTerm);
+      window.location.href = newRoute;
     }
   }, [searchTerm]);
 

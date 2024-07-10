@@ -1,7 +1,8 @@
 import Button from "../../../components/common/Button/Button";
-import PropTypes from "prop-types";
+import { ROUTES } from "../../../routes/consts";
 import React from "react";
 import styles from "./BusinessCard.module.scss";
+import { useNavigate } from "react-router-dom";
 
 interface BusinessCardProps {
   business: {
@@ -15,6 +16,12 @@ interface BusinessCardProps {
 }
 
 const BusinessCard = ({ business }: BusinessCardProps) => {
+  const navigate = useNavigate();
+
+  const handleBookNow = () => {
+    navigate(ROUTES.BOOK_NOW);
+  };
+
   return (
     <div className={styles.card}>
       {business.img && (
@@ -31,7 +38,7 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
           className={styles.contactPerson}
         >{`${business.name} ${business.lastName}`}</p>
         <p className={styles.address}>{business.address}</p>
-        <Button>Book now</Button>
+        <Button onClick={handleBookNow}>Book now</Button>
       </div>
     </div>
   );

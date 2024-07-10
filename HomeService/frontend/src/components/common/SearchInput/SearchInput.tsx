@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import Button from "../../../components/common/Button/Button";
 import { CiSearch } from "react-icons/ci";
-import PropTypes from "prop-types";
 import styles from "./SearchInput.module.scss";
 import useDebounce from "../../../hooks/useDebounce";
 
@@ -35,10 +34,6 @@ const SearchInput = ({ onSearch }: SearchInputProps) => {
       </Button>
     </div>
   );
-};
-
-SearchInput.propTypes = {
-  onSearch: PropTypes.func.isRequired,
 };
 
 export default SearchInput;

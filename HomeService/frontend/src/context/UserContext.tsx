@@ -1,6 +1,5 @@
 import React, { ReactNode, createContext } from "react";
 
-import PropTypes from "prop-types";
 import { useLocalStorage } from "usehooks-ts";
 
 interface User {
@@ -60,10 +59,6 @@ const UserProvider = ({ children }: UserProviderProps) => {
       {children}
     </UserContext.Provider>
   );
-};
-
-UserProvider.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export { UserProvider, UserContext };

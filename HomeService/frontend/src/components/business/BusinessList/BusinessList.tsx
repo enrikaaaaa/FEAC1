@@ -1,5 +1,4 @@
 import BusinessCard from "../../../components/business/BusinessCard/BusinessCard";
-import PropTypes from "prop-types";
 import React from "react";
 import classNames from "classnames";
 import styles from "./BusinessList.module.scss";

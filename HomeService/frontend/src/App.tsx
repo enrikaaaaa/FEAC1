@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import About from "./pages/About/About";
 import AuthLayout from "./components/layout/AuthLayout";
-import BookNow from "./pages/BookNow/BookNow";
+import BusinessDetail from "../../frontend/src/components/business/BusinessDetail/BusinessDetail";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import Home from "./pages/Home/Home";
 import Login from "./pages/LoginRegister/Login";
@@ -40,8 +40,8 @@ const router = createBrowserRouter([
         element: <SearchCategory />,
       },
       {
-        path: ROUTES.BOOK_NOW,
-        element: <BookNow />,
+        path: ROUTES.BUSINESS_DETAIL,
+        element: <BusinessDetail />,
       },
     ],
   },

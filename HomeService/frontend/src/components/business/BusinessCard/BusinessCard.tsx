@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import BusinessSidebarModal from "../BusinessSidebarModal/BusinessSidebarModal";
 import Button from "../../../components/common/Button/Button";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../../../routes/consts";
 import styles from "./BusinessCard.module.scss";
 
 interface BusinessCardProps {
@@ -19,7 +18,7 @@ interface BusinessCardProps {
   onClick?: () => void;
 }
 
-const BusinessCard: React.FC<BusinessCardProps> = ({ business, onClick }) => {
+const BusinessCard = ({ business, onClick }: BusinessCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {

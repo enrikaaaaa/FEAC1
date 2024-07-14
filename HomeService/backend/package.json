@@ -5,6 +5,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-jwt": "^8.4.1",
     "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
@@ -15,6 +16,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "nodemon",
+    "yarn": "yarn install",
     "convert-jsx-to-tsx": "find src -type f -name '*.jsx' -exec sh -c 'mv \"$1\" \"${1%.jsx}.tsx\"' - {} \\;",
     "convert-js-to-ts": "find src -type f -name '*.js' -exec sh -c 'mv \"$1\" \"${1%.js}.ts\"' - {} \\;"
   },

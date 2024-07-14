@@ -1,4 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
+
+export interface IService extends Document {
+  _id: mongoose.Schema.Types.ObjectId;
+  company: string;
+  name: string;
+  category: mongoose.Schema.Types.ObjectId;
+  address: string;
+  img: string;
+  lastName: string;
+}
 
 const serviceSchema = new mongoose.Schema({
   _id: { type: mongoose.Schema.Types.ObjectId, required: true },
@@ -14,6 +24,4 @@ const serviceSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
 });
 
-const Service = mongoose.model("Service", serviceSchema, "Services");
-
-module.exports = Service;
+export default mongoose.model<IService>("Service", serviceSchema);

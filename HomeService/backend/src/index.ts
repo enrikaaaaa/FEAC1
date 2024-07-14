@@ -1,4 +1,5 @@
-import authMiddleware from "./middlewares/authMiddleware";
+import apointments from "./router/apointmentsRouter";
+// import authMiddleware from "./middlewares/authMiddleware";
 import categories from "./router/categoriesRouter";
 import { connectToDb } from "./db";
 import cors from "cors";
@@ -17,9 +18,9 @@ app.use(cors());
 const PORT = process.env.PORT || 8081;
 
 app.use("/auth", auth);
-app.use("/categories", categories, authMiddleware);
-app.use("/services", services, authMiddleware);
-app.use("/appointments", authMiddleware);
+app.use("/categories", categories);
+app.use("/services", services);
+app.use("/appointments", apointments);
 
 connectToDb().then(() => {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

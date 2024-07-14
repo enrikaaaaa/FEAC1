@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "yarn": "yarn install",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "convert-jsx-to-tsx": "find src -type f -name '*.jsx' -exec sh -c 'mv \"$1\" \"${1%.jsx}.tsx\"' - {} \\;",

@@ -12,10 +12,7 @@ interface BusinessListProps {
   className?: string;
 }
 
-const BusinessList: React.FC<BusinessListProps> = ({
-  categoryName,
-  className,
-}) => {
+const BusinessList = ({ categoryName, className }: BusinessListProps) => {
   const { data } = useBusinesses();
   const businesses = data ?? [];
 

@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 
+import Button from "../../common/Button/Button";
 import styled from "../BusinessDetail/BusinessDetail.module.scss";
 import { useBusinesses } from "../hooks";
 import { useParams } from "react-router-dom";
@@ -41,20 +42,21 @@ const BusinessDetail = () => {
     <div>
       <div className={styled.intro}>
         <div className={styled.rightSide}>
-          <img
-            className={styled.roundedImage}
-            src={business.img}
-            alt={business.company}
-          />
-          <div>
-            <h2 className={styled.chip}>{business.category}</h2>
-            <h1>{business.company}</h1>
-            <p>{business.address}</p>
-            <p>{business.email}</p>
+          <div className={styled.rightSideTop}>
+            <img
+              className={styled.roundedImage}
+              src={business.img}
+              alt={business.company}
+            />
+
+            <div className={styled.about}>
+              <h2 className={styled.chip}>{business.category}</h2>
+              <h1>{business.company}</h1>
+              <p>{business.address}</p>
+              <p>{business.email}</p>
+            </div>
           </div>
-         
-        </div>
-        <div className={styled.rightSideDescription}>
+          <div className={styled.rightSideDescription}>
             <h2>Description</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
@@ -62,7 +64,20 @@ const BusinessDetail = () => {
               numquam quod! Ipsa nostrum incidunt magni aperiam repudiandae
               commodi dicta fugit ullam!
             </p>
+            <h2>Gallary</h2>
+            {/* images */}
           </div>
+        </div>
+
+        <div className={styled.leftSide}>
+          <Button small></Button>
+          {business.name} {business.lastName}
+          <p>available</p>
+          <Button small>Book Now</Button>
+          <div className={styled.leftSideBusiness}>
+            <h2>Similar Business</h2>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -47,10 +47,7 @@ const NavBar = () => {
       <div className={styles.rightSection}>
         {isLoggedIn ? (
           <div className={styles.rightSectionAlign}>
-            <Avatar user={user || { name: "" }} />
-            <Button onClick={handleLogout} large={true}>
-              Log Out
-            </Button>
+            <Avatar user={user || { name: "" }} handleLogout={handleLogout} />
           </div>
         ) : (
           <Button onClick={() => navigate("/login")} large={true}>

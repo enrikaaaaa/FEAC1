@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
-const Apointments = require("../models/appointments");
+
+import Apointments from "../models/appointments";
 
 const router = express.Router();
 
@@ -12,17 +13,18 @@ router.get("/", async (_req: Request, res: Response) => {
   }
 });
 
-router.put("/update/:id", async (req: Request, res: Response) => {
+router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedApointment = await Apointments.findByIdAndUpdate(
-      id,
-      req.body,
-      { new: true }
-    );
-    res.json(updatedApointment);
+    const Apointment = await Apointments.findById(id);
+
+    if (!Apointment) {
+      return res.status(404).json({ message: "Apointment not found" });
+    }
+
+    res.json(Apointment);
   } catch (err) {
-    res.status(500).json({ message: "Error updating apointment", error: err });
+    res.status(500).json({ message: "Error fetching Apointment", error: err });
   }
 });
 

@@ -1,9 +1,11 @@
 import React, { useMemo } from "react";
 
+import BusinessSidebarModal from "../BusinessSidebarModal/BusinessSidebarModal";
 import Button from "../../common/Button/Button";
 import styled from "../BusinessDetail/BusinessDetail.module.scss";
 import { useBusinesses } from "../hooks";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 interface Business {
   _id: string;
@@ -19,6 +21,7 @@ interface Business {
 const BusinessDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { data: businesses, isLoading, error } = useBusinesses();
+  const [isOpen, setIsOpen] = useState(false);
 
   const business = useMemo(() => {
     return businesses?.find(
@@ -37,6 +40,14 @@ const BusinessDetail = () => {
   if (!business) {
     return <div>No business found.</div>;
   }
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div>
@@ -65,15 +76,33 @@ const BusinessDetail = () => {
               commodi dicta fugit ullam!
             </p>
             <h2>Gallary</h2>
-            {/* images */}
+            <img
+              className={styled.gallary}
+              src={business.img}
+              alt={business.company}
+            />
           </div>
         </div>
 
         <div className={styled.leftSide}>
-          <Button small></Button>
+          <Button small>
+            <img
+              src="https://img.icons8.com/?size=100&id=105543&format=png&color=ffffff"
+              alt="Icon"
+              className={styled.buttonIcon}
+            ></img>
+          </Button>
           {business.name} {business.lastName}
           <p>available</p>
-          <Button small>Book Now</Button>
+          <Button small className={styled.longButton} onClick={openModal}>
+            <img
+              src="https://img.icons8.com/?size=100&id=bysMwFsPqzFF&format=png&color=ffffff"
+              alt="icon"
+              className={styled.buttonIcon}
+            ></img>
+            Book Appointment
+          </Button>
+          <BusinessSidebarModal isOpen={isOpen} onClose={closeModal} />
           <div className={styled.leftSideBusiness}>
             <h2>Similar Business</h2>
           </div>

@@ -71,3 +71,20 @@ p {
 .leftSideBusiness {
   text-align: left;
 }
+.buttonIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+}
+.longButton{
+  width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.gallary {
+  width: 20rem;
+  border-radius: 2rem;
+} 

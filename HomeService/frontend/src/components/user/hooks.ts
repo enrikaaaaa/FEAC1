@@ -15,6 +15,7 @@ export const useLoginUser = () => {
     },
   });
 };
+
 export const useRegisterUser = () => {
   const queryClient = useQueryClient();
 

@@ -7,6 +7,7 @@ import { styled } from "@mui/system";
 interface TimePickerProps {
   value: Dayjs | null;
   onChange: (newValue: Dayjs | null) => void;
+  unavailableTimes: string[]; 
 }
 
 const TimeSlot = styled("div")(({ theme }) => ({
@@ -25,9 +26,17 @@ const TimeSlot = styled("div")(({ theme }) => ({
     backgroundColor: "#007bff",
     color: "#fff",
   },
+  "&.unavailable": {
+    backgroundColor: "#ccc",
+    cursor: "not-allowed",
+  },
 }));
 
-const TimePicker: React.FC<TimePickerProps> = ({ value, onChange }) => {
+const TimePicker: React.FC<TimePickerProps> = ({
+  value,
+  onChange,
+  unavailableTimes,
+}) => {
   const [selectedTime, setSelectedTime] = React.useState<Dayjs | null>(null);
 
   const handleTimeClick = (time: Dayjs) => {
@@ -42,15 +51,21 @@ const TimePicker: React.FC<TimePickerProps> = ({ value, onChange }) => {
     let currentTime = startTime;
 
     while (currentTime.isBefore(endTime)) {
-      timeSlots.push(currentTime);
+      const formattedTime = currentTime.format("HH:mm");
+      const isUnavailable = unavailableTimes.includes(formattedTime);
+
+      timeSlots.push({ time: currentTime, isUnavailable });
       currentTime = currentTime.add(30, "minute");
     }
 
-    return timeSlots.map((time, index) => (
+    return timeSlots.map(({ time, isUnavailable }, index) => (
       <TimeSlot
         key={index}
-        className={selectedTime?.isSame(time) ? "selected" : ""}
-        onClick={() => handleTimeClick(time)}
+        className={`
+          ${selectedTime?.isSame(time) ? "selected" : ""}
+          ${isUnavailable ? "unavailable" : ""}
+        `}
+        onClick={() => !isUnavailable && handleTimeClick(time)}
       >
         {time.format("HH:mm")}
       </TimeSlot>

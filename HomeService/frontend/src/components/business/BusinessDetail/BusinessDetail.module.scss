@@ -76,15 +76,23 @@ p {
   height: 1.5rem;
   border-radius: 50%;
 }
-.longButton{
+.longButton {
   width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
-.gallary {
+.gallery {
   width: 20rem;
   border-radius: 2rem;
-} 
+}
+.icon {
+  display: flex;
+  align-items: center;
+  img {
+    width: 2rem;
+    height: 2rem;
+  }
+}

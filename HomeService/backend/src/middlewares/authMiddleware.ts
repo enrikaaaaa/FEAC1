@@ -1,20 +1,42 @@
-import { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 
 import jwt from "jsonwebtoken";
 
+export interface UserPayload {
+  id: string;
+  iat: number;
+  exp: number;
+}
+
+declare global {
+  namespace Express {
+    interface Request {
+      currentUser?: UserPayload;
+    }
+  }
+}
+
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const authHeader = req.headers["authorization"];
-  if (!authHeader) return res.status(401).json({ error: "Not authenticated" });
+  const authHeader = req.headers.authorization;
 
-  const token = authHeader.split(" ")[1];
-  if (!token) return res.status(401).json({ error: "Not authenticated" });
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    res.status(401).send({ error: "Not authenticated" });
+    return;
+  }
 
-  jwt.verify(token, process.env.JWT_SECRET as string, (err, user) => {
-    if (err) return res.status(403).json({ error: "Forbidden" });
+  try {
+    const token = authHeader.split(" ")[1];
+    const payload = jwt.verify(
+      token,
+      process.env.JSON_WEB_TOKEN!
+    ) as UserPayload;
+    req.currentUser = payload;
+  } catch (err) {
+    res.status(401).send({ error: "Not authenticated" });
+    return;
+  }
 
-    (req as any).user = user;
-    next();
-  });
+  next();
 };
 
 export default authMiddleware;

@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
-const Category = require("../models/category");
+
+import Category from "../models/category";
 
 const router = express.Router();
 
@@ -15,7 +16,10 @@ router.get("/", async (_req: Request, res: Response) => {
 router.get("/search/:category", async (req: Request, res: Response) => {
   try {
     const { category } = req.params;
+    console.log(`Searching for category: ${category}`);
+
     const foundCategory = await Category.findOne({ name: category });
+    console.log(`Found category: ${foundCategory}`);
 
     if (!foundCategory) {
       return res
@@ -25,12 +29,11 @@ router.get("/search/:category", async (req: Request, res: Response) => {
 
     res.json(foundCategory);
   } catch (err) {
+    console.error("Error fetching category by name:", err);
     res
       .status(500)
       .json({ message: "Error fetching category by name", error: err });
   }
 });
-
-
 
 export default router;

@@ -1,93 +1,71 @@
 import { Box, Button, Drawer, Typography } from "@mui/material";
+import React, { useState } from "react";
 
 import DatePicker from "./DatePicker";
 import { Dayjs } from "dayjs";
-import React from "react";
 import TimePicker from "./TimePicker";
-import { styled } from "@mui/system";
-import styles from "./BusinessSidebarModal.module.scss";
+import { createAppointment } from "../api";
 
 interface BusinessSidebarModalProps {
   isOpen: boolean;
   onClose: () => void;
-  width?: string | number;
-  backgroundColor?: string;
-  opacity?: number;
-  title?: string;
-  children?: React.ReactNode;
+  userId: string;
 }
 
-const DrawerStyled = styled(Drawer)(() => ({
-  "& .MuiDrawer-paper": {
-    width: "100%",
-    maxWidth: "400px",
-    backgroundColor: "#ffffff",
-    opacity: 0.9,
-    padding: "16px",
-  },
-}));
-
-const BusinessSidebarModal = ({
+const BusinessSidebarModal: React.FC<BusinessSidebarModalProps> = ({
   isOpen,
   onClose,
-  width = "100%",
-  backgroundColor = "#ffffff",
-  opacity = 0.9,
-  title = "Book on a service",
-  children,
-}: BusinessSidebarModalProps) => {
-  const handleTimeChange = (newTime: Dayjs | null) => {
-    console.log("Selected time:", newTime?.format("HH:mm"));
+  userId,
+}) => {
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
+  const [selectedTime, setSelectedTime] = useState<Dayjs | null>(null);
+
+  const handleDateChange = (newDate: Dayjs | null) => {
+    setSelectedDate(newDate);
   };
 
-  const handleReserveTime = () => {};
+  const handleTimeChange = (newTime: Dayjs | null) => {
+    setSelectedTime(newTime);
+  };
+
+  const handleReserveTime = async () => {
+    if (selectedDate && selectedTime) {
+      try {
+        const createdAppointment = await createAppointment(
+          userId,
+          selectedDate.format("YYYY-MM-DD"),
+          selectedTime.format("HH:mm")
+        );
+        console.log("Appointment created:", createdAppointment);
+        onClose(); // Close the drawer after successful booking
+      } catch (error) {
+        console.error("Error creating appointment:", error);
+      }
+    }
+  };
+
   return (
-    <DrawerStyled
-      anchor="right"
-      open={isOpen}
-      onClose={onClose}
-      ModalProps={{
-        keepMounted: true,
-      }}
-      className={styles.sidebarModal}
-      sx={{
-        "& .MuiDrawer-paper": {
-          width: width,
-          maxWidth: "400px",
-          backgroundColor: backgroundColor,
-          opacity: opacity,
-        },
-      }}
-    >
-      <Box sx={{ width: "100%" }}>
+    <Drawer anchor="right" open={isOpen} onClose={onClose}>
+      <Box sx={{ width: 400, p: 2 }}>
         <Typography variant="h6" sx={{ textAlign: "center", mt: 2 }}>
-          {title}
+          Book an Appointment
         </Typography>
-        <Box sx={{ p: 2 }}>
-          {children || (
-            <Typography variant="body1" className={styles.BookingContainer}>
-              Select Date and Time slot to book on a service
-              <strong>Select Date</strong>
-            </Typography>
-          )}
-          <DatePicker />
-          <h2>Select Time Slot</h2>
-          <br />
-          <TimePicker value={null} onChange={handleTimeChange} />
-          <Button
-            variant="contained"
-            type="submit"
-            onClick={handleReserveTime}
-            sx={{ mt: 2 }}
-          >
-            Book
-          </Button>
-          <Button onClick={onClose} sx={{ mt: 2 }}>
-            Close
-          </Button>
-        </Box>
+        <DatePicker value={selectedDate} onChange={handleDateChange} />
+        <TimePicker
+          value={selectedTime}
+          onChange={handleTimeChange}
+          unavailableTimes={[]}
+        />
+        <Button
+          variant="contained"
+          onClick={handleReserveTime}
+          sx={{ mt: 2 }}
+          disabled={!selectedDate || !selectedTime}
+        >
+          Reserve Time
+        </Button>
       </Box>
-    </DrawerStyled>
+    </Drawer>
   );
 };
 

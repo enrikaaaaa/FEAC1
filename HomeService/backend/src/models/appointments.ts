@@ -1,20 +1,26 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-const apointmentSchema = new mongoose.Schema({
-  _id: { type: mongoose.Schema.Types.ObjectId, required: true },
-  categoryId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Apointments",
-    required: true,
-  },
-  datetime: { type: String, required: true },
-  user: { type: String, required: true },
+interface IAppointment extends Document {
+  userId: string;
+  date: string;
+  time: string;
+  reserved: boolean;
+}
+
+const AppointmentSchema: Schema = new Schema({
+  userId: { type: String, required: true },
+  date: { type: String, required: true },
+  time: { type: String, required: true },
+  reserved: { type: Boolean, required: true },
+  img: { type: String, required: true },
+  company: { type: String, required: true },
+  name: { type: String, required: true },
 });
 
-const Apointments = mongoose.model(
-  "Apointment",
-  apointmentSchema,
-  "Apointments"
+const Appointment = mongoose.model<IAppointment>(
+  "Appointment",
+  AppointmentSchema,
+  "Appointments"
 );
 
-export default Apointments;
+export default Appointment;

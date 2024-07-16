@@ -1,11 +1,11 @@
 import { Navigate, generatePath } from "react-router-dom";
 
-import BusinessCard from "../../../components/business/BusinessCard/BusinessCard";
+import BusinessCard from "../BusinessCard/BusinessCard";
 import { ROUTES } from "../../../routes/consts";
 import React from "react";
 import classNames from "classnames";
 import styles from "./BusinessList.module.scss";
-import { useBusinesses } from "../../../components/business/hooks";
+import { useBusinesses } from "../hooks";
 
 interface BusinessListProps {
   categoryName?: string;
@@ -22,6 +22,7 @@ const BusinessList = ({ categoryName, className }: BusinessListProps) => {
 
   const handleCardClick = (id: string) => {
     const path = generatePath(ROUTES.BUSINESS_DETAIL, { id });
+
     return <Navigate to={path} />;
   };
 

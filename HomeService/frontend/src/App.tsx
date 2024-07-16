@@ -2,9 +2,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import About from "./pages/About/About";
-import AuthLayout from "./components/layout/AuthLayout";
 import Bookings from "./components/business/Bookings/Bookings";
-import BusinessDetail from "../../frontend/src/components/business/BusinessDetail/BusinessDetail";
+import BusinessDetail from "./components/business/BusinessDetail/BusinessDetail";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import Home from "./pages/Home/Home";
 import Login from "./pages/LoginRegister/Login";
@@ -13,7 +12,10 @@ import React from "react";
 import Register from "./pages/LoginRegister/Register";
 import RootLayout from "./components/layout/RootLayout";
 import SearchCategory from "./pages/SearchCategory/SearchCategory";
+import { SearchProvider } from "./context/SearchContext";
+import SearchResults from "./pages/SearchCategory/SearchResults";
 import Services from "./pages/Services/Services";
+import SimilarCategories from "./components/business/SimilarCategories/SimilarCategories";
 import { SnackbarProvider } from "notistack";
 import { UserProvider } from "./context/UserContext";
 
@@ -48,10 +50,18 @@ const router = createBrowserRouter([
         path: ROUTES.MY_BOOKINGS,
         element: <Bookings />,
       },
+      {
+        path: ROUTES.SEARCH,
+        element: <SearchResults />,
+      },
+      {
+        path: ROUTES.SIMILAR,
+        element: <SimilarCategories category={""} />,
+      },
     ],
   },
   {
-    element: <AuthLayout />,
+    element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -69,11 +79,13 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <UserProvider>
-        <SnackbarProvider>
-          <RouterProvider router={router} />
-        </SnackbarProvider>
-      </UserProvider>
+      <SearchProvider>
+        <UserProvider>
+          <SnackbarProvider>
+            <RouterProvider router={router} />
+          </SnackbarProvider>
+        </UserProvider>
+      </SearchProvider>
     </QueryClientProvider>
   );
 };

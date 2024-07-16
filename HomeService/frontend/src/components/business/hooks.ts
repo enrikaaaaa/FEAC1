@@ -1,7 +1,8 @@
 import {
+  fetchBookings,
   fetchBusinessById,
   fetchBusinesses,
-  fetchByUser,
+  fetchSimilarBusinesses,
 } from "../../components/business/api";
 
 import { useQuery } from "@tanstack/react-query";
@@ -24,9 +25,25 @@ export const useBusiness = (id: string) => {
   });
 };
 
-export const useAppointments = (email: string | undefined) => {
+export const useBookings = (userId: string) => {
   return useQuery({
-    queryKey: [APPOINTMENTS_KEY],
-    queryFn: fetchByUser,
+    queryKey: [APPOINTMENTS_KEY, userId],
+    queryFn: () => fetchBookings(userId),
+    enabled: !!userId,
   });
 };
+
+export const useSimilarBusinesses = (category: string) => {
+  return useQuery({
+    queryKey: [BUSINESS_KEY, category],
+    queryFn: () => fetchSimilarBusinesses(category),
+    enabled: !!category,
+  });
+};
+
+export const useAppointments = () => {
+  return useQuery({
+    queryKey: [APPOINTMENTS_KEY],
+    queryFn: fetchBookings,
+  });
+}

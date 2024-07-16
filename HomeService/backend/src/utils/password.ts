@@ -1,7 +1,7 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
-const generateToken = (userId: any) => {
-  const jwtSecret = process.env.JWT_SECRET;
+export const generateToken = (userId: any) => {
+  const jwtSecret = process.env.JSON_WEB_TOKEN ;
   if (!jwtSecret) {
     throw new Error("JWT_SECRET environment variable is not defined.");
   }
@@ -10,4 +10,3 @@ const generateToken = (userId: any) => {
   });
 };
 
-module.exports = { generateToken };

@@ -7,6 +7,8 @@ export const ROUTES = {
   SEARCH_CATEGORY: "/search/:category",
   BUSINESS_DETAIL: "/business/:id",
   MY_BOOKINGS: "/appointments/:id",
+  SEARCH: "/search",
+  SIMILAR: "/services/search/:category",
 };
 
 export const navigationBarLinks = [

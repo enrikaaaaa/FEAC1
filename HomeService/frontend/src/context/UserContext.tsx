@@ -1,8 +1,11 @@
-import React, { ReactNode, createContext } from "react";
+import React, { ReactNode, createContext, useContext } from "react";
 
 import { useLocalStorage } from "usehooks-ts";
 
+export const useUser = () => useContext(UserContext);
+
 interface User {
+  id: User | null;
   _id: string;
   Name: string;
   Email: string;

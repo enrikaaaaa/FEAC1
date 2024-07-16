@@ -1,23 +1,40 @@
-import mongoose from "mongoose";
-const bcrypt = require("bcryptjs");
+import mongoose, { Types } from "mongoose";
 
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
+import bcrypt from "bcryptjs";
 
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+interface IUser extends mongoose.Document {
+  _id: Types.ObjectId;
+  name: string;
+  age?: number;
+  email: string;
+  password: string;
+  isCorrectPassword: (password: string) => Promise<boolean>;
+}
+
+const userSchema = new mongoose.Schema<IUser>(
+  {
+    name: { type: String, required: true },
+    age: { type: Number },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true, unique: true },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
+
+userSchema.pre<IUser>("save", async function (next) {
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
   next();
 });
 
-userSchema.methods.isCorrectPassword = async function (password: string) {
-  return await bcrypt.compare(password, this.password);
+userSchema.methods.isCorrectPassword = function (password: string) {
+  return bcrypt.compare(password, this.password);
 };
 
-const User = mongoose.model("User", userSchema, "Users");
+const User = mongoose.model<IUser>("User", userSchema, "Users");
 
-module.exports = User;
+export default User;

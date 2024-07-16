@@ -8,7 +8,7 @@ interface AvatarProps {
   user?: {
     email: any;
     name: string;
-    id: string;
+    _id: string; // Use _id instead of id
   };
   handleLogout: () => void;
 }
@@ -41,7 +41,7 @@ const Avatar = ({ user, handleLogout }: AvatarProps) => {
   };
 
   const handleMyBookings = () => {
-    navigate(`/appointments/${user.id}`);
+    navigate(`/appointments/${user._id}`); // Use _id for navigation
     handlePopoverLeave();
   };
 

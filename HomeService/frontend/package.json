@@ -20,7 +20,7 @@
     "@mui/lab": "^5.0.0-alpha.171",
     "@mui/material": "^5.16.0",
     "@mui/x-date-pickers": "^7.9.0",
-    "@tanstack/react-query": "^5.45.1",
+    "@tanstack/react-query": "^5.51.1",
     "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
@@ -30,6 +30,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
+    "react-loader-spinner": "^6.1.6",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.24.1",
     "sass": "^1.77.6",
@@ -37,6 +38,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.11.97",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@vitejs/plugin-react": "^4.2.1",
@@ -44,6 +46,8 @@
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "react-day-picker": "^8.10.1",
+    "react-responsive": "^10.0.0",
     "typescript": "^5.5.2",
     "vite": "^5.1.6"
   }

@@ -24,4 +24,4 @@ const serviceSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
 });
 
-export default mongoose.model<IService>("Service", serviceSchema);
+export default mongoose.model<IService>("Service", serviceSchema, "Services");

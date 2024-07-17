@@ -12,7 +12,7 @@ interface DatePickerProps {
   onChange: (newValue: Dayjs | null) => void;
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
+const DatePicker = ({ value, onChange }: DatePickerProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={["DateCalendar", "DateCalendar"]}>

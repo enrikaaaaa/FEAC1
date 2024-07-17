@@ -7,7 +7,7 @@ import { styled } from "@mui/system";
 interface TimePickerProps {
   value: Dayjs | null;
   onChange: (newValue: Dayjs | null) => void;
-  unavailableTimes: string[]; 
+  unavailableTimes: string[];
 }
 
 const TimeSlot = styled("div")(({ theme }) => ({
@@ -32,11 +32,7 @@ const TimeSlot = styled("div")(({ theme }) => ({
   },
 }));
 
-const TimePicker: React.FC<TimePickerProps> = ({
-  value,
-  onChange,
-  unavailableTimes,
-}) => {
+const TimePicker = ({ value, onChange, unavailableTimes }: TimePickerProps) => {
   const [selectedTime, setSelectedTime] = React.useState<Dayjs | null>(null);
 
   const handleTimeClick = (time: Dayjs) => {

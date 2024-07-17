@@ -13,7 +13,7 @@ interface WifiLoaderProps {
   mobileSize?: string;
 }
 
-const WifiLoader: React.FC<WifiLoaderProps> = ({
+const WifiLoader = ({
   className = `wifiloader`,
   text = `Loading...`,
   frontColor = `#4F29F0`,
@@ -22,7 +22,7 @@ const WifiLoader: React.FC<WifiLoaderProps> = ({
   size = `64px`,
   desktopSize = ``,
   mobileSize = ``,
-}) => {
+}: WifiLoaderProps) => {
   const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 1224px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 

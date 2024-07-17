@@ -4,7 +4,7 @@ import { ROUTES } from "../../../routes/consts";
 import SearchInput from "../../../components/common/SearchInput/SearchInput";
 import styles from "./Hero.module.scss";
 
-const Hero: React.FC = () => {
+const Hero = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {

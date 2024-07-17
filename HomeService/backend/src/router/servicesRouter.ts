@@ -5,9 +5,34 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/", async (_req: Request, res: Response) => {
+router.get("/", async (req: Request, res: Response) => {
   try {
-    const services = await Service.find();
+    const services = await Service.aggregate([
+      {
+        $lookup: {
+          from: "Categories",
+          localField: "category",
+          foreignField: "_id",
+          as: "categoryDetails",
+        },
+      },
+      {
+        $unwind: "$categoryDetails",
+      },
+      {
+        $project: {
+          _id: 1,
+          company: 1,
+          name: 1,
+          lastName: 1,
+          address: 1,
+          category: "$categoryDetails.name",
+          img: 1,
+          email: 1,
+        },
+      },
+    ]);
+
     res.json(services);
   } catch (err) {
     console.error("Error fetching services:", err);
@@ -36,7 +61,7 @@ router.get("/search/:category", async (req: Request, res: Response) => {
     const services = await Service.aggregate([
       {
         $lookup: {
-          from: "categories",
+          from: "Categories",
           localField: "category",
           foreignField: "_id",
           as: "categoryDetails",
@@ -53,12 +78,13 @@ router.get("/search/:category", async (req: Request, res: Response) => {
       {
         $project: {
           _id: 1,
+          company: 1,
           name: 1,
           lastName: 1,
           address: 1,
           category: "$categoryDetails.name",
           img: 1,
-          company: "$categoryDetails.company",
+          email: 1,
         },
       },
     ]);

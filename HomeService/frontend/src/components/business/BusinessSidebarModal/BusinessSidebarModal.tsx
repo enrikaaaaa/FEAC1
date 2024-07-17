@@ -12,11 +12,11 @@ interface BusinessSidebarModalProps {
   userId: string;
 }
 
-const BusinessSidebarModal: React.FC<BusinessSidebarModalProps> = ({
+const BusinessSidebarModal = ({
   isOpen,
   onClose,
   userId,
-}) => {
+}: BusinessSidebarModalProps) => {
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [selectedTime, setSelectedTime] = useState<Dayjs | null>(null);
 

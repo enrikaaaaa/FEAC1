@@ -78,27 +78,17 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.post("/", async (req: Request, res: Response) => {
   try {
-    const { userId, date, time, reserved } = req.body;
+    const { UserId, Date, services, reserved } = req.body;
 
-    if (!userId || !date || !time || typeof reserved !== "boolean") {
-      return res.status(400).json({ error: "Missing required fields" });
-    }
-
-    const existingAppointment = await Appointment.findOne({
-      userId,
-      date,
-      time,
+    const appointment = new Appointment({
+      UserId,
+      Date,
+      services,
+      reserved,
     });
-    if (existingAppointment) {
-      console.log("Time slot already reserved:", existingAppointment);
-      return res.status(400).json({ error: "Time slot already reserved" });
-    }
 
-    const newAppointment = new Appointment({ userId, date, time, reserved });
-    await newAppointment.save();
-
-    console.log("New appointment created:", newAppointment);
-    res.status(201).json(newAppointment);
+    await appointment.save();
+    res.status(201).json(appointment);
   } catch (error) {
     console.error("Error creating appointment:", error);
     res.status(500).json({ error: "Internal server error" });

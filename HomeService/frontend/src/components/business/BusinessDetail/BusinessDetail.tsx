@@ -91,7 +91,6 @@ const BusinessDetail = () => {
             ></img>
           </Button>
           <div className={styled.icon}>
-            {" "}
             <img
               src="https://img.icons8.com/?size=100&id=Cssf43cjx2fu&format=png&color=B80FA1"
               alt="icon"

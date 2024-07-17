@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 
 import Category from "../models/category";
+import Service from "../models/service";
 
 const router = express.Router();
 
@@ -13,26 +14,14 @@ router.get("/", async (_req: Request, res: Response) => {
   }
 });
 
-router.get("/search/:category", async (req: Request, res: Response) => {
+router.get("/category/:category", async (req: Request, res: Response) => {
   try {
     const { category } = req.params;
-    console.log(`Searching for category: ${category}`);
-
-    const foundCategory = await Category.findOne({ name: category });
-    console.log(`Found category: ${foundCategory}`);
-
-    if (!foundCategory) {
-      return res
-        .status(404)
-        .json({ message: `Category ${category} not found` });
-    }
-
-    res.json(foundCategory);
+    const services = await Service.find({ category });
+    res.json(services);
   } catch (err) {
-    console.error("Error fetching category by name:", err);
-    res
-      .status(500)
-      .json({ message: "Error fetching category by name", error: err });
+    console.error("Error fetching services by category:", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 

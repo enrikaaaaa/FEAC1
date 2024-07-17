@@ -37,7 +37,7 @@ const BusinessSidebarModal: React.FC<BusinessSidebarModalProps> = ({
           selectedTime.format("HH:mm")
         );
         console.log("Appointment created:", createdAppointment);
-        onClose(); // Close the drawer after successful booking
+        onClose();
       } catch (error) {
         console.error("Error creating appointment:", error);
       }

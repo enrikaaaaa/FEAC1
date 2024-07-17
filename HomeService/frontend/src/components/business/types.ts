@@ -1,6 +1,6 @@
 export default interface Appointment {
-  id: Key | null | undefined;
-  title: ReactNode;
+  id: string | null | undefined;
+  title: string;
   _id: string;
   date: string;
   time: string;

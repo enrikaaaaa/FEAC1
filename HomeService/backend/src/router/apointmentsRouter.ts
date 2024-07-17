@@ -13,7 +13,7 @@ router.get("/:id", async (req, res) => {
     const appointments = await Appointment.aggregate([
       {
         $match: {
-          UserId: userObjectId, // Match appointments for specific userId
+          UserId: userObjectId,
         },
       },
       {

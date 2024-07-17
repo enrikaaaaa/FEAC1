@@ -29,10 +29,46 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
-router.get("/category/:category", async (req: Request, res: Response) => {
+router.get("/search/:category", async (req: Request, res: Response) => {
   try {
     const { category } = req.params;
-    const services = await Service.find({ category });
+
+    const services = await Service.aggregate([
+      {
+        $lookup: {
+          from: "categories",
+          localField: "category",
+          foreignField: "_id",
+          as: "categoryDetails",
+        },
+      },
+      {
+        $unwind: "$categoryDetails",
+      },
+      {
+        $match: {
+          "categoryDetails.name": category,
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          lastName: 1,
+          address: 1,
+          category: "$categoryDetails.name",
+          img: 1,
+          company: "$categoryDetails.company",
+        },
+      },
+    ]);
+
+    if (services.length === 0) {
+      return res
+        .status(404)
+        .json({ message: `No services found for category: ${category}` });
+    }
+
     res.json(services);
   } catch (err) {
     console.error("Error fetching services by category:", err);

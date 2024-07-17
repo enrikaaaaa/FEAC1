@@ -6,7 +6,8 @@ import { useParams } from "react-router-dom";
 import { useUser } from "../../../context/UserContext";
 
 const Bookings = () => {
-  const { id: userId } = useParams<{ id: string }>();
+  const storedUser = localStorage.getItem("user");
+  const userId = storedUser ? JSON.parse(storedUser)._id : null;
   const { user } = useUser();
   const {
     data: bookings,
@@ -27,8 +28,6 @@ const Bookings = () => {
     return <div>No bookings found.</div>;
   }
 
-  console.log(bookings);
-
   return (
     <div className={styles.bookingsContainer}>
       <h1>Your Bookings</h1>
@@ -47,35 +46,31 @@ const Bookings = () => {
             <div className={styles.infoContainer}>
               <h3>{booking.serviceDetails.company}</h3>
               <div>
-              
-              <img
+                <img
                   src="https://img.icons8.com/?size=100&id=23400&format=png&color=B646E2"
                   alt="icon"
-                ></img> {booking.serviceDetails.name}
-                {booking.serviceDetails.lastName}
+                />
+                {booking.serviceDetails.name} {booking.serviceDetails.lastName}
               </div>
               <div>
                 <img
                   src="https://img.icons8.com/?size=100&id=5bHmXpLDVtWf&format=png&color=B646E2"
                   alt="icon"
-                ></img>
+                />
                 {booking.serviceDetails.address}
               </div>
-
               <div>
-             
-              <img
-                  src=" https://img.icons8.com/?size=100&id=SqCUs5XkuU76&format=png&color=B646E2"
+                <img
+                  src="https://img.icons8.com/?size=100&id=SqCUs5XkuU76&format=png&color=B646E2"
                   alt="icon"
-                ></img>
+                />
                 {new Date(booking.Date.From).toLocaleDateString()}
               </div>
               <div>
-              
-              <img
-                  src=" https://img.icons8.com/?size=100&id=72CqXZXdPMV2&format=png&color=B646E2"
+                <img
+                  src="https://img.icons8.com/?size=100&id=72CqXZXdPMV2&format=png&color=B646E2"
                   alt="icon"
-                ></img>
+                />
                 {new Date(booking.Date.From).toLocaleTimeString()} -
                 {new Date(booking.Date.To).toLocaleTimeString()}
               </div>

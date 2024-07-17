@@ -1,4 +1,5 @@
 import {
+  fetchAppointmentsByUserId,
   fetchBookings,
   fetchBusinessById,
   fetchBusinesses,
@@ -41,9 +42,10 @@ export const useSimilarBusinesses = (category: string) => {
   });
 };
 
-export const useAppointments = () => {
+export const useAppointments = (userId: string) => {
   return useQuery({
-    queryKey: [APPOINTMENTS_KEY],
-    queryFn: fetchBookings,
+    queryKey: [APPOINTMENTS_KEY, userId],
+    queryFn: () => fetchAppointmentsByUserId(userId),
+    enabled: !!userId,
   });
-}
+};

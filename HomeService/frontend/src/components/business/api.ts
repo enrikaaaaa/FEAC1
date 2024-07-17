@@ -30,11 +30,6 @@ export const addTime = (id: string, time: string) =>
 export const fetchBusinessById = (id: string) =>
   axiosInstance.get(`/services/${id}`).then((response) => response.data);
 
-export const fetchAppointments = () =>
-  axiosInstance
-    .get<Appointment[]>("/appointments")
-    .then((response) => response.data);
-
 export const createAppointment = (userId: string, date: string, time: string) =>
   axiosInstance.post<Appointment>("/appointments", {
     userId,
@@ -42,6 +37,9 @@ export const createAppointment = (userId: string, date: string, time: string) =>
     time,
     reserved: true,
   });
+
+  export const fetchAppointmentsByUserId = (userId: string) =>
+  axiosInstance.get(`/appointments/${userId}`).then((response) => response.data);
 
 export const fetchBookings = async (userId: string) => {
   try {

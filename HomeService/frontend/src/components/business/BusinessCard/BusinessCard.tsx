@@ -18,7 +18,7 @@ interface BusinessCardProps {
   onClick?: () => void;
 }
 
-const BusinessCard: React.FC<BusinessCardProps> = ({ business, onClick }) => {
+const BusinessCard = ({ business, onClick }: BusinessCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {

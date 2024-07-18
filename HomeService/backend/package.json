@@ -13,7 +13,7 @@
     "npm": "^10.8.1"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc & vite build",
     "start": "node dist/index.js",
     "dev": "nodemon",
     "yarn": "yarn install",

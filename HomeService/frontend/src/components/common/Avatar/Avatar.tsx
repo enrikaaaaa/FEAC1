@@ -5,13 +5,15 @@ import styles from "./Avatar.module.scss";
 import { useNavigate } from "react-router-dom";
 
 interface AvatarProps {
-  user?: {
-    email: any;
-    name: string;
-    _id: string;
-  };
+  email?: any;
+  _id: string;
   handleLogout: () => void;
+  user: {
+    _id: any;
+    name: string;
+  };
 }
+
 
 const Avatar = ({ user, handleLogout }: AvatarProps) => {
   const navigate = useNavigate();

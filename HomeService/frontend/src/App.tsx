@@ -56,7 +56,7 @@ const router = createBrowserRouter([
       },
       {
         path: ROUTES.SIMILAR,
-        element: <SimilarCategories category={""} />,
+        element: <SimilarCategories />,
       },
     ],
   },

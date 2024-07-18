@@ -3,13 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   registerInitialValues,
   registerValidationSchema,
-} from "@/components/user/consts";
+} from "../../../components/user/consts";
 
-import Button from "@/components/common/Button/Button";
-import FormikField from "@/components/common/Formik/FormikInput";
-import { ROUTES } from "@/routes/consts";
+import Button from "../../../components/common/Button/Button";
+import FormikField from "../../../components/common/Formik/FormikInput";
+import { ROUTES } from "../../../routes/consts";
+import React from "react";
 import styles from "@/components/user/Form.module.scss";
-import { useRegisterUser } from "@/components/user/hooks";
+import { useRegisterUser } from "../../../components/user/hooks";
 import { useSnackbar } from "notistack";
 
 const RegisterForm = () => {
@@ -17,15 +18,15 @@ const RegisterForm = () => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
-  const handleSubmit = async (formValues) => {
+  const handleSubmit = async (formValues: any) => {
     try {
       await registerUser(formValues);
       navigate(ROUTES.LOGIN);
       enqueueSnackbar("Registration successful", {
         variant: "success",
       });
-    } catch (error) {
-      const errorMessage = error;
+    } catch (error: any) {
+      const errorMessage: any = error;
       console.log(errorMessage);
       enqueueSnackbar(errorMessage?.response?.data.message ?? "", {
         variant: "error",

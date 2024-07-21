@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "cd backend && yarn && yarn build && yarn start",
-    "heroku-postbuild": "cd frontend && yarn && yarn build",
+    "heroku-postbuild": "yarn && yarn build",
     "deploy": "git push heroku main"
   },
   "engines": {

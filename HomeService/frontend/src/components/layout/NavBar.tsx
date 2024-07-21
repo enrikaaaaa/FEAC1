@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import Avatar from "../../components/common/Avatar/Avatar";
 import Button from "../common/Button/Button";
 import React from "react";
+import { User } from "../user/types";
 import { UserContext } from "../../context/UserContext";
 import logo from "@/assets/pictures/Logo.png";
 import { navigationBarLinks } from "../../routes/consts";
@@ -47,10 +48,7 @@ const NavBar = () => {
       <div className={styles.rightSection}>
         {isLoggedIn ? (
           <div className={styles.rightSectionAlign}>
-            <Avatar
-              user={user || { _id: "", name: "" }}
-              handleLogout={handleLogout}
-            />
+            <Avatar user={user as unknown as User} handleLogout={handleLogout} />
           </div>
         ) : (
           <Button onClick={() => navigate("/login")} large={true}>

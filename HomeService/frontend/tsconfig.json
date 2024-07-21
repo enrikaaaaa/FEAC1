@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types", "./src/types"],
-    "types": ["vite/client"]
+    "types": ["vite/client"],
   },
   "include": ["src"]
 }

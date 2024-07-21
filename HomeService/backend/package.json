@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "tsc && vite build",
+    "postinstall": "npm rebuild bcrypt --build-from-source",
     "start": "node dist/index.js",
     "dev": "nodemon",
     "yarn": "yarn install",
@@ -29,6 +30,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
     "node-gyp": "^10.2.0",
+    "node-pre-gyp": "^0.17.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   }

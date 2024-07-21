@@ -9,7 +9,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
     "mongoose": "^8.4.4",
-    "npm": "^10.8.1"
+    "npm": "^10.8.1",
+    "node-pre-gyp": "^0.17.0"
   },
   "scripts": {
     "build": "tsc && vite build",
@@ -31,7 +32,6 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
     "node-gyp": "^10.2.0",
-    "node-pre-gyp": "^0.17.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   },

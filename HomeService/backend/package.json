@@ -8,9 +8,7 @@
     "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
-    "mongoose": "^8.4.4",
-    "npm": "^10.8.1",
-    "node-pre-gyp": "^0.17.0"
+    "mongoose": "^8.4.4"
   },
   "scripts": {
     "build": "tsc && vite build",
@@ -18,8 +16,7 @@
     "dev": "nodemon",
     "yarn": "yarn install",
     "convert-jsx-to-tsx": "find src -type f -name '*.jsx' -exec sh -c 'mv \"$1\" \"${1%.jsx}.tsx\"' - {} \\;",
-    "convert-js-to-ts": "find src -type f -name '*.js' -exec sh -c 'mv \"$1\" \"${1%.js}.ts\"' - {} \\;",
-    "postinstall": "npm rebuild bcrypt --build-from-source"
+    "convert-js-to-ts": "find src -type f -name '*.js' -exec sh -c 'mv \"$1\" \"${1%.js}.ts\"' - {} \\;"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
@@ -34,7 +31,5 @@
     "node-gyp": "^10.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
-  },
-  "keywords": [],
-  "description": ""
+  }
 }

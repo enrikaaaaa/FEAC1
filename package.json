@@ -1,25 +1,14 @@
 {
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "express-jwt": "^8.4.1",
-    "install": "^0.13.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.8.0",
-    "mongoose": "^8.4.4",
-    "npm": "^10.8.1",
-    "yarn": "^1.22.22"
-  },
+  "name": "home-service",
+  "version": "1.0.0",
+  "description": "",
   "scripts": {
-    "build": "tsc && vite build",
     "start": "cd backend && yarn && yarn build && yarn start",
-    "heroku-postbuild": "yarn && yarn build",
+    "heroku-postbuild": "cd frontend && yarn && yarn build",
     "deploy": "git push heroku main"
   },
   "engines": {
-    "node": "20.x",
+    "node": "22.x",
     "yarn": "1.x"
   },
   "keywords": [],

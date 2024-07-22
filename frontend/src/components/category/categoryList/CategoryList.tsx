@@ -1,7 +1,7 @@
-import CategoryCard from "../../../components/category/categoryCard/CategoryCard";
+import CategoryCard from "../categoryCard/CategoryCard";
 import React from "react";
 import styles from "./CategoryList.module.scss";
-import { useCategories } from "../../../components/category/hooks";
+import { useCategories } from "../hooks";
 
 const CategoryList = () => {
   const { data: categories } = useCategories();

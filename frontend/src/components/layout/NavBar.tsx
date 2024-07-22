@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
-import Avatar from "../../components/common/Avatar/Avatar";
+import Avatar from "../common/Avatar/Avatar";
 import Button from "../common/Button/Button";
 import React from "react";
 import { User } from "../user/types";

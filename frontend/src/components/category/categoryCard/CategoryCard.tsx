@@ -2,7 +2,7 @@ import { generatePath, useNavigate, useParams } from "react-router-dom";
 
 import { ROUTES } from "../../../routes/consts";
 import React from "react";
-import UrlIcon from "../../../components/common/UrlIcon/UrlIcon";
+import UrlIcon from "../../common/UrlIcon/UrlIcon";
 import classNames from "classnames";
 import styles from "./CategoryCard.module.scss";
 

@@ -4,7 +4,7 @@ import {
   fetchBusinessById,
   fetchBusinesses,
   fetchSimilarBusinesses,
-} from "../../components/business/api";
+} from "./api";
 
 import { useQuery } from "@tanstack/react-query";
 

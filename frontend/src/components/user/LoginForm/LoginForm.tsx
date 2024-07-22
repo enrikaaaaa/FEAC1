@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   loginInitialValues,
   loginValidationSchema,
-} from "../../../components/user/consts";
+} from "../consts";
 import { useContext, useState } from "react";
 
-import Button from "../../../components/common/Button/Button";
-import FormikField from "../../../components/common/Formik/FormikInput";
+import Button from "../../common/Button/Button";
+import FormikField from "../../common/Formik/FormikInput";
 import React from "react";
 import { UserContext } from "../../../context/UserContext";
-import { loginUser } from "../../../components/user/api";
+import { loginUser } from "../api";
 import styles from "@/components/user/Form.module.scss";
 
 const LoginForm = () => {

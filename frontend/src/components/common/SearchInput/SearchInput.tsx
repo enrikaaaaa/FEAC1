@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-import Button from "../../../components/common/Button/Button";
+import Button from "../Button/Button";
 import { CiSearch } from "react-icons/ci";
 import { SearchContext } from "../../../context/SearchContext";
 import styles from "./SearchInput.module.scss";

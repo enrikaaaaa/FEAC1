@@ -1,6 +1,6 @@
 import { ErrorMessage, Field } from "formik";
 
-import Input from "../../../components/common/Input/Input";
+import Input from "../Input/Input";
 import React from "react";
 import styles from "@/components/common/Input/Input.module.scss";
 

@@ -1,7 +1,7 @@
 import CategoryCard from "../categoryCard/CategoryCard";
 import React from "react";
 import styles from "./VerticalCategoryList.module.scss";
-import { useCategories } from "./../hooks";
+import { useCategories } from "../hooks";
 
 const VerticalCategoryList = () => {
   const { data: categories } = useCategories();

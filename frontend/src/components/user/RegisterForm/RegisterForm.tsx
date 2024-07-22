@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   registerInitialValues,
   registerValidationSchema,
-} from "../../../components/user/consts";
+} from "../consts";
 
-import Button from "../../../components/common/Button/Button";
-import FormikField from "../../../components/common/Formik/FormikInput";
+import Button from "../../common/Button/Button";
+import FormikField from "../../common/Formik/FormikInput";
 import { ROUTES } from "../../../routes/consts";
 import React from "react";
 import styles from "@/components/user/Form.module.scss";
-import { useRegisterUser } from "../../../components/user/hooks";
+import { useRegisterUser } from "../hooks";
 import { useSnackbar } from "notistack";
 
 const RegisterForm = () => {

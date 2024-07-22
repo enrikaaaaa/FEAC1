@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { ROUTES } from "../../../routes/consts";
-import SearchInput from "../../../components/common/SearchInput/SearchInput";
+import SearchInput from "../SearchInput/SearchInput";
 import styles from "./Hero.module.scss";
 
 const Hero = () => {

@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-import { errorMessage } from "../../components/consts/errorMessage";
+import { errorMessage } from "../consts/errorMessage";
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string().email(errorMessage.email).required(errorMessage.required),
